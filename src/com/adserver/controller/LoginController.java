@@ -21,6 +21,9 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class LoginController {
     
+    /**
+     * 直接在代码里面设置的超级账号跟开发者账号
+     */
     private static Map<String, User> kaifaUserMap;
     
     static {
