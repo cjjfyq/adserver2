@@ -74,7 +74,7 @@ body,td,th {
 	</head>
 
 	<body id=userlogin_body>
-		<form action="${pageContext.request.contextPath}/doLogin"
+		<form action="${pageContext.request.contextPath}/dologin"
 			method="post" id="mainform">
 			<table id="__01" width="591" height="250" border="0" cellpadding="0"
 				cellspacing="0" align="center" style="margin-top: 180px;">
