@@ -1,0 +1,13 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!--<mapping class="com.web.controller.entity.User"/>-->
+
+        <!--后台管理员-->
+        <mapping resource="com/adserver/web/entity/User.hbm.xml"></mapping>
+
+    </session-factory>
+</hibernate-configuration>
