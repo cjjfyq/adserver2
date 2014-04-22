@@ -79,7 +79,7 @@ public class LoginController {
         if (kaifaUserMap.containsKey(user.getName()) && kaifaUserMap.get(user.getName()).getPassword().equals(user.getPassword())) {
             find = kaifaUserMap.get(user.getName());
             System.out.println("是开发者账号: " + find.getUserType());
-            return "login/success";
+            return "redirect:login/success.jsp";
         }
         
         
@@ -100,7 +100,7 @@ public class LoginController {
         }
         
         
-        return "login/success";
+        return "redirect:login/success.jsp";
     }
 
 

@@ -9,7 +9,8 @@ import javax.annotation.Resource;
 
 /**
  * Created by Administrator on 2014/4/16.
- * 对管理员进行增删改查
+ * 对管理员管理： 进行增删改查
+ *  
  */
 @Controller
 @RequestMapping("/user")
@@ -28,6 +29,16 @@ public class CRUDContorller {
         System.out.println("user: " + user);
         userService.addUser(user);
         return "success";
+    }
+    
+    /**
+     * 显示所有管理员
+     * @return
+     */
+    @RequestMapping("/listall")
+    public String showAllUser() {
+        System.out.println();
+        return "jsp/userManager";
     }
 
 }
