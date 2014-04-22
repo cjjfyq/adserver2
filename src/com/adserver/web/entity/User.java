@@ -34,6 +34,22 @@ public class User {
     //昵称
 //    @Column(length = 32)
     private String nickName;
+    
+    /**
+     * 用户类型，依据用户类型来决定用户的权限
+     * 
+     */
+    private int userType;
+    
+    
+
+    public int getUserType() {
+        return userType;
+    }
+
+    public void setUserType(int userType) {
+        this.userType = userType;
+    }
 
     public int getId() {
         return id;
@@ -79,4 +95,7 @@ public class User {
     public String toString() {
         return "name:" + name + ",pw:" + password;
     }
+    
+    
+    
 }

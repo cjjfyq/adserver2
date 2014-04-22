@@ -23,7 +23,9 @@ public class TestController {
 
         String ret = springManager.test();
         System.out.println("ret from spring: " + ret);
-
+        
+        
+        
         return "test";
     }
 

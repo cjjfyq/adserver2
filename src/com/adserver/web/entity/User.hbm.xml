@@ -1,22 +1,17 @@
 <?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC
-        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.adserver.web.entity">
-	
-	<class name="User" table="t_user">
-		<id name="id" type="int" column="id">
-            <generator class="native"/>
-		</id>
-		<property name="name" type="string" column="name" length="32"/>
-        <property name="password" type="string" column="password" length="32" ></property>
-        <property name="menus" length="32" type="string" />
-
-        <property name="nickName" length="32" type="string"/>
-
-
-
-	</class>
-	
+ <class name="User" table="t_user">
+  <id column="id" name="id" type="int">
+   <generator class="native"/>
+  </id>
+  <property column="name" generated="never" lazy="false" length="32"
+   name="name" type="string"/>
+  <property column="password" generated="never" lazy="false" length="32"
+   name="password" type="string"/>
+  <property generated="never" lazy="false" length="32" name="menus" type="string"/>
+  <property generated="never" lazy="false" length="32" name="nickName" type="string"/>
+  <property name="userType" type="int"/>
+ </class>
 </hibernate-mapping>

@@ -1,6 +1,8 @@
 package com.adserver.dao;
 
 import com.adserver.web.entity.User;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -29,6 +31,7 @@ public class UserDao implements IUserDao {
 //        session.close();
         System.out.println("add user ----");
         sessionFactory.getCurrentSession().save(user);
+        
     }
 
     @Override
@@ -43,6 +46,9 @@ public class UserDao implements IUserDao {
 
     @Override
     public User getUser(String name) {
-        return null;
+        String hql = "from User u where u.name=?";
+        Query query = sessionFactory.getCurrentSession().createQuery(hql);
+        query.setString(0, name);
+        return (User) query.uniqueResult();
     }
 }
