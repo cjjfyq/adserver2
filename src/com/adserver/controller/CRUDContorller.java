@@ -28,10 +28,19 @@ public class CRUDContorller {
 
     @RequestMapping("/addUser")
     public String addUser(User user) {
-        System.out.println("进入 addUser-----");
+        System.out.println("进入 addUser-----" + user);
+        if (user == null || user.getName() == null) {
+            return "failed";
+        }
+        //判断用户是否已经存在
+        User find = userService.getUser(user.getName());
+        if (find != null) {
+            System.out.println("用户名已经存在");
+            return "failed";
+        }
         System.out.println("user: " + user);
         userService.addUser(user);
-        return "success";
+        return "redirect:listall";
     }
     
     /**

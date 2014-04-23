@@ -24,6 +24,7 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 <script type="text/javascript" src="/adserver/login/js/md5.js"></script>
 
 <script type="text/javascript">
+    //添加用户
     function addUser(param) {
         alert(param);
     }    
@@ -37,7 +38,8 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 
      <div class="r-contentz"> 
          <form id="formMain" method="post"
-						action="${pageContext.request.contextPath}/manager/userManagerAction!saveOrUpdate.action">
+         
+						action="${pageContext.request.contextPath}/user/addUser" >
 							<table width="100%" border="0" align="center" cellpadding="0"
 								cellspacing="0" style="margin-bottom: 5px;">
 								<tr>
@@ -88,8 +90,8 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 																用户账号：
 															</td>
 															<td>
-																<input size=30 type="text" name="manager.username"
-																	id="username"/>
+																<input size=30 type="text" name="name"
+																	id="name" />
 															</td>
 														<tr>
 														<tr>
@@ -98,8 +100,8 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 																用户名：
 															</td>
 															<td>
-																<input size=30 type="text" name="manager.accountname"
-																	id="accountname"/>
+																<input size=30 type="text" name="nickName"
+																	id="nickName"/>
 															</td>
 														<tr>
 														<tr>
@@ -108,7 +110,7 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 																密&nbsp;&nbsp;&nbsp;&nbsp;码：
 															</td>
 															<td>
-																<input size=30 onfocus="this.select();" type="password" id="upwd" align="left" width="88%">
+																<input size=30 onfocus="this.select();" type="password" id="password" name="password" align="left" width="88%">
 															</td>
 														</tr>
 														<tr>
@@ -117,7 +119,7 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 																再次输入：
 															</td>
 															<td>
-																<input size=30 onfocus="this.select();" type="password" name="manager.password" id="userpassword" width="88%"/>
+																<input size=30 onfocus="this.select();" type="password" name="manager.password" id="password2" width="88%"/>
 															</td>
 														</tr>
 														<tr>
@@ -196,8 +198,8 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 
 														<tr>
 															<td colspan="3" align="left"  style="padding-top: 5px;padding-bottom: 5px;padding-left: 160px;">
-																<input type="button"
-																	onclick="validateForm('${pageContext.request.contextPath}');"
+																<input type="submit"
+																	
 																	value=" 确认添加 " class="anniu02" id="sure"
 																	style="display: none"
 																	onmouseover="this.style.background='url(images/anniu02.png) no-repeat'"

@@ -13,7 +13,7 @@ var gainValue = function(id){
     return gain(id).value;
 }
 function viewControll(param){
-    window.alert("添加");
+//    window.alert("添加");
     if ("cancle" == param) {
         clearForm();
         gain("cancle").style.display = "none";
@@ -202,6 +202,9 @@ function del(id, rootPath){
     
 }
 
+/**
+ * 添加用户
+ */
 function validateForm(){
     if ("" == gainValue("username")) {
         alert("用户账号不能为空！");
