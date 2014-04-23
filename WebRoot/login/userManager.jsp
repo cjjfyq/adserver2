@@ -169,7 +169,7 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 																<c:forEach items="${result}" var="m">
 																	<c:forEach items="${m}" var="mn" varStatus="status">
 
-																		<c:if test="${mn.pid eq 0}">
+																		<c:if test="${mn.parentId eq 0}">
 																			<div id="pranetDiv_${mn.id }">
 																				<label for="parent_${mn.id}" style="color:black;font-size:14px;">
 																					<input onclick="clickParentMenu('${mn.id }');"
@@ -179,12 +179,12 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 																				</label>
 																				&nbsp;&nbsp;
 																		</c:if>
-																		<c:if test="${mn.pid > 0}">
+																		<c:if test="${mn.parentId > 0}">
 																			<label for="child_${mn.id}">
 																				<input
-																					onclick="clickChildMenu('${mn.id}','${mn.pid}');"
+																					onclick="clickChildMenu('${mn.id}','${mn.parentId}');"
 																					id="child_${mn.id}" type="checkbox"
-																					name="parent_${mn.pid }" value="${mn.id}" />
+																					name="parent_${mn.parentId }" value="${mn.id}" />
 																				${mn.name}
 																			</label>
 																		</c:if>

@@ -1,14 +1,17 @@
 package com.adserver.controller;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import com.adserver.service.IUserService;
-import com.adserver.web.entity.User;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.adserver.service.IUserService;
+import com.adserver.web.entity.Menu;
+import com.adserver.web.entity.User;
 
 /**
  * Created by Administrator on 2014/4/16.
@@ -52,6 +55,13 @@ public class CRUDContorller {
         System.out.println("进入 方法 show all user---");
         List<User> users = userService.getAllUser();
         request.setAttribute("users", users);
+        List<Menu> menus = new ArrayList<Menu>();
+        Menu e1 = new Menu();
+        e1.setName("测试");
+        e1.setId(1);
+        e1.setParentId(100);
+        menus.add(e1);
+//        request.setAttribute("result", menus);
         return "login/userManager";
     }
 

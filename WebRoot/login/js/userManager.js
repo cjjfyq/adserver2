@@ -98,8 +98,11 @@ function modify(id, username, accountname, menus,password,userscope,projectId,us
                 if (allMenu[j].type == "checkbox") {
                     if (ms[i] == allMenu[j].value) {
                         // 选中已有权限
+                        
                         allMenu[j].checked = true;
                     }
+                    allMenu[j].checked = true;
+                    alert("显示菜单");
                 }
             }
             
