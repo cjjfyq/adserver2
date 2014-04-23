@@ -41,7 +41,10 @@ public class User {
      */
     private int userType;
     
+    private int userscope;
     
+    
+
 
     public int getUserType() {
         return userType;

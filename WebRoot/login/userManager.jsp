@@ -14,10 +14,15 @@
 <link href="css/index.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript">
-document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scripts/jquery-1.4.2.js\" language=\"JavaScript\" charset=\"utf-8\"></sc"+"ript>")
+/*document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scripts/jquery-1.4.2.js\" language=\"JavaScript\" charset=\"utf-8\"></sc"+"ript>")
 document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scripts/userManager.js\" language=\"JavaScript\" charset=\"utf-8\"></sc"+"ript>")
-document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scripts/md5.js\" language=\"JavaScript\" charset=\"utf-8\"></sc"+"ript>")
+document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scripts/md5.js\" language=\"JavaScript\" charset=\"utf-8\"></sc"+"ript>")*/
 </script>
+
+<script type="text/javascript" src="./js/jquery-1.4.2.js"></script>
+<script type="text/javascript" src="./js/userManager.js"></script>
+<script type="text/javascript" src="./js/md5.js"></script>
+
 </head>
 
 <body>
@@ -251,18 +256,19 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 													<td
 														style="padding-top: 5px; padding-bottom: 5px; line-height: 1"
 														align="center">
-														${a.username}(${a.accountname })
+														${a.name}(${a.nickName })
 													</td>
 													<td
 														style="padding-top: 5px; padding-bottom: 5px; line-height: 1"
 														align="center">
 														<!--  1:内部员工, 2:手机厂家  -->
 														<c:set value="" var="utype"></c:set>
-														<c:if test="${a.usertype==1 }"><c:set var="utype" value="管理员"></c:set></c:if>
-														<c:if test="${a.usertype==2 }"> <c:set var="utype" value="客户"></c:set></c:if>
-														<c:if test="${a.usertype==3 }"><c:set var="utype" value="商务人员"></c:set></c:if>
-														<c:if test="${a.usertype==4 }"><c:set var="utype" value="广告平台客户"></c:set></c:if>
-														<c:if test="${a.usertype==5 }"><c:set var="utype" value="酷果平台管理员"></c:set></c:if>
+														<c:if test="${a.userType==1 }"><c:set var="utype" value="管理员"></c:set></c:if>
+														<c:if test="${a.userType==2 }"> <c:set var="utype" value="客户"></c:set></c:if>
+														<c:if test="${a.userType==3 }"><c:set var="utype" value="商务人员"></c:set></c:if>
+														<c:if test="${a.userType==4 }"><c:set var="utype" value="广告平台客户"></c:set></c:if>
+														<c:if test="${a.userType==5 }"><c:set var="utype" value="酷果平台管理员"></c:set></c:if>
+														<!-- 
 														<c:if test="${a.userscope eq 1}">内部员工
 															<c:if test="${!empty utype}">
 															<span style='color:#09F;'>(${utype})</span></c:if>
@@ -271,6 +277,7 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 															<c:if test="${!empty utype}">
 																<span style='color:#09F;'>(${utype})</span></c:if>
 														</c:if>
+														 -->
 													</td>
 													<td
 														style="padding-top: 5px; padding-bottom: 5px; text-align: center">
@@ -288,12 +295,12 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 														<input type="button" value="修改" class="anniu"
 															onmouseover="this.style.background='url(images/anniu.png) no-repeat'"
 															onmouseout="this.style.background='url(images/anniu1.png) no-repeat'"
-															onclick="modify('${a.id}','${a.username}','${a.accountname}','${a.menus }','${a.password}',${a.userscope },'${a.projectIds}',${a.usertype })" />
+															/>
 
 															<input type="button" value="删除" class="anniu"
 																onmouseover="this.style.background='url(images/anniu.png) no-repeat'"
 																onmouseout="this.style.background='url(images/anniu1.png) no-repeat'"
-																onclick="del('${a.id }','${pageContext.request.contextPath}');" />
+																/>
 
 														</td>
 													</tr>
@@ -314,13 +321,14 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
      </div>
 </div>
 </div>
-</body>
- <script type="text/javascript">
-function setPage(pageNo) {
+
+<script type="text/javascript">
+function setPage(pageNo){
 		var rootPath="${pageContext.request.contextPath}";
 		document.getElementById("pageNo").value=pageNo;
 		document.getElementById("formMain").action=rootPath+"/manager/userManagerAction!view.action";
 		document.getElementById("formMain").submit();
 }
+</body>
 </script>
 </html>

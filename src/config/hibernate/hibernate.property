@@ -1,7 +1,7 @@
 connection.driver_class=com.mysql.jdbc.Driver
 connection.url=jdbc:mysql://localhost:3306/adserver?useUnicode=true&characterEncoding=utf8
 connection.username=root
-connection.password=admin
+connection.password=root
 
 hibernate.dialect=org.hibernate.dialect.MySQLInnoDBDialect
 hibernate.hbm2ddl.auto=none

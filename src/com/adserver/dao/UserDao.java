@@ -36,7 +36,8 @@ public class UserDao implements IUserDao {
 
     @Override
     public List<User> getAllUser() {
-        return null;
+        Query query = sessionFactory.getCurrentSession().createQuery("from User");
+        return query.list();
     }
 
     @Override

@@ -81,7 +81,7 @@ public class LoginController {
             System.out.println("是开发者账号: " + find.getUserType());
             //重定向页面
 //            return "redirect:login/success.jsp";
-            return "redirect:login/userManager.jsp";
+            return "redirect:user/listall";
         }
         
         

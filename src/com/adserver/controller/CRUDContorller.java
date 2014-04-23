@@ -1,11 +1,14 @@
 package com.adserver.controller;
 
+import java.util.List;
+
 import com.adserver.service.IUserService;
 import com.adserver.web.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by Administrator on 2014/4/16.
@@ -36,9 +39,11 @@ public class CRUDContorller {
      * @return
      */
     @RequestMapping("/listall")
-    public String showAllUser() {
-        System.out.println();
-        return "jsp/userManager";
+    public String showAllUser(HttpServletRequest request) {
+        System.out.println("进入 方法 show all user---");
+        List<User> users = userService.getAllUser();
+        request.setAttribute("users", users);
+        return "login/userManager";
     }
 
 }
