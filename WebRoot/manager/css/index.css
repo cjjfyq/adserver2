@@ -1,0 +1,50 @@
+/* CSS Document */
+body{ font-size:12px; line-height:24px; color:#333; background:url(../images/adminD_2013-02-01.jpg) repeat-x;}
+/* body{ font-size:12px; line-height:24px; color:#333;background-color:#8DB6CD	;} */
+*{ margin:0px; padding:0px; list-style:none;}
+img{ border:none;}
+a{ color:#333; text-decoration:none;}
+a:hover{ color:#C00;}
+
+#wrap{ width:95%; margin-left:auto; margin-right:auto; overflow:hidden;}
+
+#header{ width:90%; height:33px; margin-top:10px;}
+
+#nav{ width:100%; height:72px;}
+
+#mainbody{ width:114%; height:auto; padding:18px 18px 18px 18px; background:#FFF; overflow:hidden;}
+
+.left-hand{ width:15%; height:auto; float:left; background:url(../images/ht_10.png);}
+
+.left-navz{ width:194px; }
+
+.right-hand{ width:83.5%; float:left; margin-left:0.8%}
+.r-contents{ width:83.5%; height:40px;}
+.r-contentz{ width:83.5%; height:auto; margin-top:8px;}
+
+.foot{ width:100%; height:88px;}
+
+ 
+#main { width:194px; height:auto; margin-top:20px;}      
+.ltag { font-size:12px; line-height:30px; border-collapse:collapse; cursor:default; background-image:url(../images/ht_25.png); background-repeat:no-repeat; background-position:center; background-position:50px; height:30px;  margin-top:1px; text-align:left; padding-left:75px; font-weight:bold;}    
+
+.hidden { width:194px; display:none; height:auto;}    
+ul { width:144px;}    
+li { width:198px; height:26px; display:block; line-height:20px; font-size:12px; list-style:none; cursor:default;  text-align:center; margin-top:1px;}    
+.lb1 { font-size:18px; background-color:#098df2;} 
+
+.left-navx{ width:194px; height:13px; background:url(../images/htgl_17.png);}
+
+/* CSS Button */
+.anniu{ background:url(../images/anniu1.png) no-repeat; width:35px; height:22px; text-align:center; line-height:22px; color:#FFFFFF; font-size:12px; border:none;}
+.anniu02{ background:url(../images/anniu12.png) no-repeat; width:73px; height:22px; text-align:center; line-height:22px; color:#FFFFFF; font-size:12px; border:none;}
+.addc{ background:url(../images/add.png) no-repeat 0px -2.2px; border:0px; cursor:pointer; }
+
+/* CSS Document */
+#mainaa { width:150px; height:auto;}      
+.ltagaa { font-size:12px; line-height:30px; border-collapse:collapse; cursor:default; font-weight:bold; border-bottom:solid 1px #CCC; background-image:url(../images/sc0904181_13.png); background-repeat:no-repeat; background-position:center; background-position:10px; width:150px; height:30px;  margin-top:1px; text-align:center;}    
+
+.hiddenaa { width:150px; display:none; height:auto;}    
+.hiddenaa ul { width:150px;}    
+.hiddenaa li { width:150px; height:26px; display:block; line-height:20px; font-size:12px; list-style:none; cursor:default; border-bottom:dashed 1px #CCC; text-align:center; margin-top:1px;  background-image:url(../images/kfz_27.png); background-repeat:no-repeat; background-position:center; background-position:30px; background-color:#FFF;}    
+.lbaa { font-size:18px; background-color:#098df2;}
