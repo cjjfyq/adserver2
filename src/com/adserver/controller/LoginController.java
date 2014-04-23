@@ -57,8 +57,8 @@ public class LoginController {
         
         //自动添入用户名跟密码
         User user = new User();
-        user.setName("中文");
-        user.setPassword("123");
+        user.setName("admin");
+        user.setPassword("admin");
         request.setAttribute("user", user);
         
         System.out.println("loginResult: " + loginResult);
@@ -79,7 +79,9 @@ public class LoginController {
         if (kaifaUserMap.containsKey(user.getName()) && kaifaUserMap.get(user.getName()).getPassword().equals(user.getPassword())) {
             find = kaifaUserMap.get(user.getName());
             System.out.println("是开发者账号: " + find.getUserType());
-            return "redirect:login/success.jsp";
+            //重定向页面
+//            return "redirect:login/success.jsp";
+            return "redirect:login/userManager.jsp";
         }
         
         
@@ -100,7 +102,8 @@ public class LoginController {
         }
         
         
-        return "redirect:login/success.jsp";
+//        return "redirect:login/success.jsp";
+        return "redirect:login/userManager.jsp";
     }
 
 

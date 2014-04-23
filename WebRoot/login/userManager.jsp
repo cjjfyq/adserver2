@@ -1,13 +1,12 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>畅想平台</title>
+<title></title>
 
 <style type="text/css">
 
@@ -23,7 +22,6 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 
 <body>
 <div id="wrap">
-<%@include file="head.jsp"%>
 <div class="right-hand"  align="left"> 
 
      <div class="r-contentz"> 
@@ -316,7 +314,6 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
      </div>
 </div>
 </div>
-<%@include file="bottom.jsp"%>
 </body>
  <script type="text/javascript">
 function setPage(pageNo) {
