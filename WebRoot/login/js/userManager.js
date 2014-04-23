@@ -13,7 +13,7 @@ var gainValue = function(id){
     return gain(id).value;
 }
 function viewControll(param){
-//    window.alert("添加");
+//    window.alert(param);
     if ("cancle" == param) {
         clearForm();
         gain("cancle").style.display = "none";
@@ -21,8 +21,8 @@ function viewControll(param){
         gain("sure").style.display = "none";
         gain("userTab").style.display = "none";
         gain("sc").style.display = "none";
-        gain("username").readOnly = false;
-        gain("username").style.backgroundColor = "#ffffff";
+        gain("name").readOnly = false;
+        gain("name").style.backgroundColor = "#ffffff";
     }
     else 
         if ("ready" == param) {
@@ -30,7 +30,7 @@ function viewControll(param){
             gain("ready").style.display = "none";
             gain("sure").style.display = "";
             gain("userTab").style.display = "";
-            gain("username").focus();
+            gain("name").focus();
             gain("sc").style.display = "none";
         }
 }
@@ -71,12 +71,13 @@ function getMenus(){
 }
 
 function modify(id, username, accountname, menus,password,userscope,projectId,usertype){
-	 clearChecked();
+    alert("modify");
+	clearChecked();
     gain("userId").value = id;
-    gain("username").value = username;
-    gain("username").readOnly = true;
-    gain("username").style.backgroundColor = "#ffff80";
-    gain("accountname").value=accountname;
+    gain("name").value = username;
+    gain("name").readOnly = true;
+    gain("name").style.backgroundColor = "#ffff80";
+    gain("nickName").value=accountname;
 	gain("pwdHidden").value=password;
 	gain("projectIds").value=projectId;
 	
@@ -109,8 +110,8 @@ function modify(id, username, accountname, menus,password,userscope,projectId,us
     gain("sure").style.display = "none";
     gain("userTab").style.display = "";
     gain("sc").style.display = "";
-    gain("upwd").focus();
-    gain("upwd").select();
+    gain("password").focus();
+    gain("password2").select();
 }
 
 /**
@@ -184,9 +185,9 @@ function clickChildMenu(child, pid){
 }
 
 function clearForm(){
-    gain("username").value = "";
-    gain("userpassword").value = "";
-    gain("upwd").value = "";
+    gain("name").value = "";
+    gain("password").value = "";
+    gain("password2").value = "";
     clearChecked();
 }
 

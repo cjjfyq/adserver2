@@ -304,6 +304,7 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 														<input type="button" value="修改" class="anniu"
 															onmouseover="this.style.background='url(images/anniu.png) no-repeat'"
 															onmouseout="this.style.background='url(images/anniu1.png) no-repeat'"
+															onclick="modify('${a.id}','${a.name}','${a.nickName}','${a.menus }','${a.password}',${a.userscope },'${a.projectIds}',${a.userType })" 
 															/>
 
 															<input type="button" value="删除" class="anniu"
