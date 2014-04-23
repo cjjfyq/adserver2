@@ -13,6 +13,7 @@
   <property generated="never" lazy="false" length="32" name="menus" type="string"/>
   <property generated="never" lazy="false" length="32" name="nickName" type="string"/>
   <property name="userType" type="int"/>
-  <property name="userscope" column="userscrope" type="int"/>
+  <property name="userscope" column="userscope" type="int"/>
+  <property name="projectIds" column="projectIds" type="string" length="32"/>
  </class>
 </hibernate-mapping>

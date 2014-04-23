@@ -13,6 +13,7 @@ var gainValue = function(id){
     return gain(id).value;
 }
 function viewControll(param){
+    window.alert("添加");
     if ("cancle" == param) {
         clearForm();
         gain("cancle").style.display = "none";

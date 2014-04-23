@@ -33,10 +33,12 @@ public class LoginController {
         user.setPassword("admin");
         //是超级用户: 1
         user.setUserType(1);
+        user.setUserscope(1);
         kaifaUserMap.put(user.getName(), user);
         
         //普通开发者：2
         user = new User();
+        user.setUserscope(1);
         user.setName("cjj");
         user.setPassword("cjj");
         user.setUserType(2);

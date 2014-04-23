@@ -19,6 +19,7 @@
 
 	<mvc:resources location="/image/" mapping="/image/**" />
 	<mvc:resources location="/js/" mapping="/js/**" />
+	<mvc:resources location="/login/js/" mapping="/login/js/**" />
 
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

@@ -19,9 +19,15 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scripts/md5.js\" language=\"JavaScript\" charset=\"utf-8\"></sc"+"ript>")*/
 </script>
 
-<script type="text/javascript" src="./js/jquery-1.4.2.js"></script>
-<script type="text/javascript" src="./js/userManager.js"></script>
-<script type="text/javascript" src="./js/md5.js"></script>
+<script type="text/javascript" src="/adserver/login/js/jquery-1.4.2.js"></script>
+<script type="text/javascript" src="/adserver/login/js/userManager.js"></script>
+<script type="text/javascript" src="/adserver/login/js/md5.js"></script>
+
+<script type="text/javascript">
+    function addUser(param) {
+        alert(param);
+    }    
+</script>
 
 </head>
 
@@ -65,7 +71,8 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 													<input type="button" value=" 添  加 " class="anniu02" id="ready"
 														onmouseover="this.style.background='url(images/anniu02.png) no-repeat'"
 														onmouseout="this.style.background='url(images/anniu12.png) no-repeat'"
-														onclick="viewControll('ready')" />
+														onclick="viewControll('ready')" 
+														/>
 												</td>
 											<td colspan="2" width="22%" align="center"></td>
 										</tr>

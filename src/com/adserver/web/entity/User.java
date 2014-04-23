@@ -43,8 +43,24 @@ public class User {
     
     private int userscope;
     
+    private String projectIds;
     
 
+    public String getProjectIds() {
+        return projectIds;
+    }
+
+    public void setProjectIds(String projectIds) {
+        this.projectIds = projectIds;
+    }
+
+    public int getUserscope() {
+        return userscope;
+    }
+
+    public void setUserscope(int userscope) {
+        this.userscope = userscope;
+    }
 
     public int getUserType() {
         return userType;
