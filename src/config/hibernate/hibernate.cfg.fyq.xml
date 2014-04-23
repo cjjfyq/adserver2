@@ -9,5 +9,6 @@
         <!--后台管理员-->
         <mapping resource="com/adserver/web/entity/User.hbm.xml"></mapping>
 
+        <mapping resource="com/adserver/web/entity/Menu.hbm.xml"></mapping>
     </session-factory>
 </hibernate-configuration>
