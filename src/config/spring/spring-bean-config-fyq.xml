@@ -19,7 +19,7 @@
 
     <bean id="testSpring" class="com.adserver.service.TestSpring"></bean>
 
-    <bean id="userDao" class="com.adserver.dao.UserDao">
+    <bean id="userDao" class="com.adserver.dao.impl.UserDao">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 

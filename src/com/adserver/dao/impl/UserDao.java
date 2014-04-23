@@ -1,5 +1,7 @@
-package com.adserver.dao;
+package com.adserver.dao.impl;
 
+import com.adserver.dao.AbstractBaseDao;
+import com.adserver.dao.IUserDao;
 import com.adserver.web.entity.User;
 
 import org.hibernate.Query;
@@ -11,9 +13,9 @@ import java.util.List;
 /**
  * Created by Gordon on 2014/4/15.
  */
-public class UserDao implements IUserDao {
+public class UserDao extends AbstractBaseDao<User, Integer> implements IUserDao {
 
-    private SessionFactory sessionFactory;
+  /*  private SessionFactory sessionFactory;
 
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
@@ -23,7 +25,7 @@ public class UserDao implements IUserDao {
     public SessionFactory getSessionFactory() {
         return sessionFactory;
     }
-
+*/
     @Override
     public void addUser(User user) {
 //        Session session = sessionFactory.openSession();
