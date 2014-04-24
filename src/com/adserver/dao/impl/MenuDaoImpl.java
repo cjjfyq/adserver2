@@ -14,15 +14,15 @@ import com.adserver.web.entity.Menu;
  * @author Gordon
  * 菜单实体类
  */
-public class MenuDaoImpl /*extends AbstractBaseDao<Menu, Integer>*/ implements IMenuDao {
+public class MenuDaoImpl extends AbstractBaseDao<Menu, Integer> implements IMenuDao {
     
-    private SessionFactory sessionFactory;
+//    private SessionFactory sessionFactory;
     
-    
+   /* 
 
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
-    }
+    }*/
 
     @Override
     public List<Menu> getAllMenu() {
@@ -34,7 +34,7 @@ public class MenuDaoImpl /*extends AbstractBaseDao<Menu, Integer>*/ implements I
     @Override
     public List<Menu> getAllParentMenu() {
         System.out.println("menu dao----------- ");
-        String hql = "from Menu m";
+        String hql = "from Menu m where m.parentId=-1";
         Session session = sessionFactory.openSession();
         Query query = session.createQuery(hql);
         return query.list();

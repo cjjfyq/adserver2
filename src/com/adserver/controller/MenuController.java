@@ -43,5 +43,15 @@ public class MenuController {
         System.out.println(allParentMenu);
         return "jsp/success";
     }
+    
+    @RequestMapping("/submenu")
+    public String subMenuByParent() {
+        System.out.println("进入 sub menu ----");
+        Menu pm = new Menu();
+        pm.setMenuId(1001);
+        List<Menu> allParentMenu = menuService.getSubMenuByParentMenu(pm);
+        System.out.println(allParentMenu);
+        return "jsp/success";
+    }
 
 }

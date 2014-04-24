@@ -24,6 +24,13 @@ public class Menu {
     
     private int orderNum;
     
+    @Override
+    public String toString() {
+        return "Menu [id=" + id + ", menuId=" + menuId + ", name=" + name
+                + ", url=" + url + ", parentId=" + parentId + ", orderNum="
+                + orderNum + ", command=" + command + "]";
+    }
+
     /**
      * 备注
      */
