@@ -6,13 +6,16 @@
   <id column="id" name="id" type="int">
    <generator class="native" />
   </id>
+  
+  <property name="menuId" column="menuId" type="int"></property>
+  
   <property column="name" generated="never" lazy="false"
    length="32" name="name" type="string" />
    
   <property column="url" generated="never" lazy="false"
    length="120" name="url" type="string" />
    
-   <property column="parentId" name="parentId" type="int"></property>
+   <property column="parentId" name="parentId" type="int"  ></property>
    
    <property column="orderNum" name="orderNum" type="int"></property>
    

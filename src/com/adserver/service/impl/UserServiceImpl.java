@@ -1,6 +1,7 @@
-package com.adserver.service;
+package com.adserver.service.impl;
 
 import com.adserver.dao.IUserDao;
+import com.adserver.service.IUserService;
 import com.adserver.web.entity.User;
 
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
  * Created by Gordon on 2014/4/15.
  *
  */
-public class UserService implements IUserService {
+public class UserServiceImpl implements IUserService {
 
     private IUserDao userDao;
 

@@ -23,12 +23,24 @@
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
-    <bean id="userServiceBase" class="com.adserver.service.UserService">
+    <bean id="userServiceBase" class="com.adserver.service.impl.UserServiceImpl">
         <property name="userDao" ref="userDao"></property>
     </bean>
 
     <bean id="userService" parent="transactionBase">
         <property name="target" ref="userServiceBase"></property>
+    </bean>
+    
+    <bean id="menuDao" class="com.adserver.dao.impl.MenuDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    
+      <bean id="menuServiceBase" class="com.adserver.service.impl.MenuServiceImpl">
+        <property name="menuDao" ref="menuDao"></property>
+    </bean>
+
+    <bean id="menuService" parent="transactionBase">
+        <property name="target" ref="menuServiceBase"></property>
     </bean>
 
 </beans>
