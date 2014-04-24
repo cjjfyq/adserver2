@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.adserver.dao.IMenuDao;
 import com.adserver.service.IUserService;
 import com.adserver.web.entity.Menu;
 import com.adserver.web.entity.User;
@@ -24,6 +25,15 @@ public class CRUDContorller {
 
     @Resource(name = "userService")
     private IUserService userService;
+    
+    @Resource(name="menuDao")
+    private IMenuDao menuDao;
+
+    
+    
+    public void setMenuDao(IMenuDao menuDao) {
+        this.menuDao = menuDao;
+    }
 
     public void setUserService(IUserService userService) {
         this.userService = userService;
@@ -55,13 +65,14 @@ public class CRUDContorller {
         System.out.println("进入 方法 show all user---");
         List<User> users = userService.getAllUser();
         request.setAttribute("users", users);
-        List<Menu> menus = new ArrayList<Menu>();
-        Menu e1 = new Menu();
-        e1.setName("测试");
-        e1.setId(1);
-        e1.setParentId(100);
-        menus.add(e1);
-//        request.setAttribute("result", menus);
+        List<List<Menu>> menus = new ArrayList<List<Menu>>();
+        //所有父菜单
+        List<Menu> parentMenu = menuDao.getAllParentMenu();
+        for (Menu menu : parentMenu) {
+            List<Menu> subMenus = menuDao.getSubMenuByParentMenu(menu);
+            menus.add(subMenus);
+        }
+        request.setAttribute("menus", menus);
         return "login/userManager";
     }
 

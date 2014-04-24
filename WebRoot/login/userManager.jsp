@@ -37,9 +37,10 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 <div class="right-hand"  align="left"> 
 
      <div class="r-contentz"> 
+     <!-- action="${pageContext.request.contextPath}/user/addUser" -->
          <form id="formMain" method="post"
-         
-						action="${pageContext.request.contextPath}/user/addUser" >
+         action="${pageContext.request.contextPath}/user/addUser"
+						 >
 							<table width="100%" border="0" align="center" cellpadding="0"
 								cellspacing="0" style="margin-bottom: 5px;">
 								<tr>
@@ -119,7 +120,7 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 																再次输入：
 															</td>
 															<td>
-																<input size=30 onfocus="this.select();" type="password" name="manager.password" id="password2" width="88%"/>
+																<input size=30 onfocus="this.select();" type="password" name="password2" id="password2" width="88%"/>
 															</td>
 														</tr>
 														<tr>
@@ -127,7 +128,7 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 																align="left" width="12%">
 																用户组：
 															</td>
-															<!--  1:内部员工, 2:手机厂家  -->
+															  1:内部员工, 2:手机厂家  
 															<td>
 																<label for="userscope1"><input id="userscope1" name="manager.userscope"  type="radio" value="1"  checked="checked"/>&nbsp;&nbsp;内部员工</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 																<label for="userscope2"><input id="userscope2" name="manager.userscope"  type="radio" value="2" />&nbsp;&nbsp;手机厂家&nbsp;&nbsp;</label>
@@ -140,7 +141,7 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 																align="left" width="12%">
 																用户类型：
 															</td>
-															<!--  1:管理员, 2:客户, 3:商务人员, 4:广告平台客户, 5:酷果平台管理员（包括业务员）  -->
+															  1:管理员, 2:客户, 3:商务人员, 4:广告平台客户, 5:酷果平台管理员（包括业务员）  
 															<td>
 																<label for="usertype1"><input id="usertype1" name="usertype"  type="radio" value="1"  checked="checked"/>&nbsp;&nbsp;管理员&nbsp;&nbsp;</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 																<label for="usertype2"><input id="usertype2" name="usertype"  type="radio" value="2" />&nbsp;&nbsp;客户&nbsp;&nbsp;</label>
@@ -166,7 +167,7 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 																菜单权限：
 															</td>
 															<td width="88%">
-																<c:forEach items="${result}" var="m">
+																<c:forEach items="${menus}" var="m">
 																	<c:forEach items="${m}" var="mn" varStatus="status">
 
 																		<c:if test="${mn.parentId eq 0}">
@@ -198,8 +199,8 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 
 														<tr>
 															<td colspan="3" align="left"  style="padding-top: 5px;padding-bottom: 5px;padding-left: 160px;">
-																<input type="submit"
-																	
+																<input type="button""
+																	onclick="validateForm()"
 																	value=" 确认添加 " class="anniu02" id="sure"
 																	style="display: none"
 																	onmouseover="this.style.background='url(images/anniu02.png) no-repeat'"
@@ -218,7 +219,7 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 
 																
 																<input type="hidden" id="pwdHidden"
-																	values="${manager.password }" />
+																	values="${user.password }" />
 
 																<input type="hidden" name="managerId" value="0" id="userId" />
 																<input type="hidden" name="manager.menus" id="usermenus" values="${manager.menus }"/>
@@ -270,14 +271,14 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 													<td
 														style="padding-top: 5px; padding-bottom: 5px; line-height: 1"
 														align="center">
-														<!--  1:内部员工, 2:手机厂家  -->
+														  1:内部员工, 2:手机厂家  
 														<c:set value="" var="utype"></c:set>
 														<c:if test="${a.userType==1 }"><c:set var="utype" value="管理员"></c:set></c:if>
 														<c:if test="${a.userType==2 }"> <c:set var="utype" value="客户"></c:set></c:if>
 														<c:if test="${a.userType==3 }"><c:set var="utype" value="商务人员"></c:set></c:if>
 														<c:if test="${a.userType==4 }"><c:set var="utype" value="广告平台客户"></c:set></c:if>
 														<c:if test="${a.userType==5 }"><c:set var="utype" value="酷果平台管理员"></c:set></c:if>
-														<!-- 
+														 
 														<c:if test="${a.userscope eq 1}">内部员工
 															<c:if test="${!empty utype}">
 															<span style='color:#09F;'>(${utype})</span></c:if>
@@ -286,7 +287,7 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 															<c:if test="${!empty utype}">
 																<span style='color:#09F;'>(${utype})</span></c:if>
 														</c:if>
-														 -->
+														 
 													</td>
 													<td
 														style="padding-top: 5px; padding-bottom: 5px; text-align: center">

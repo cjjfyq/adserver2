@@ -71,7 +71,7 @@ function getMenus(){
 }
 
 function modify(id, username, accountname, menus,password,userscope,projectId,usertype){
-    alert("modify");
+//    alert("modify");
 	clearChecked();
     gain("userId").value = id;
     gain("name").value = username;
@@ -101,8 +101,7 @@ function modify(id, username, accountname, menus,password,userscope,projectId,us
                         
                         allMenu[j].checked = true;
                     }
-                    allMenu[j].checked = true;
-                    alert("显示菜单");
+                    console.log("eee");
                 }
             }
             
@@ -209,44 +208,46 @@ function del(id, rootPath){
 /**
  * 添加用户
  */
-function validateForm(){
-    if ("" == gainValue("username")) {
+function validateForm(rootPath){
+    if ("" == gainValue("name")) {
         alert("用户账号不能为空！");
-        gain("username").focus();
+        gain("name").focus();
         return;
     }
     // 添加用户 用户名称不能重复
     if (gainValue("userId") == 0) {
-		checkUserName(rootPath, gainValue("username"));
+		checkUserName(rootPath, gainValue("name"));
 	}else {
-		if ("" == gainValue("userpassword") && "" == gainValue("upwd")) {
-			gain("formMain").action ="manager/userManagerAction!saveOrUpdate.action" + "?pwd=" + gainValue("pwdHidden");
+		if ("" == gainValue("password") && "" == gainValue("password2")) {
+		    console.log("abc");
+//			gain("formMain").action ="manager/userManagerAction!saveOrUpdate.action" + "?pwd=" + gainValue("pwdHidden");
 		}else {
-			if ("" == gainValue("upwd")) {
+			if ("" == gainValue("password")) {
 				alert("密码不能为空！");
-				gain("upwd").focus();
+				gain("password").focus();
 				return;
 			}
-			if ("" == gainValue("userpassword")) {
+			if ("" == gainValue("password2")) {
 				alert("请再次输入密码！！");
-				gain("userpassword").focus();
+				gain("password2").focus();
 				return;
 			}
-			if (gainValue("upwd") != gainValue("userpassword")) {
+			if (gainValue("password") != gainValue("password2")) {
 				alert("两次密码输入不一致，请重新输入!");
-				gain("userpassword").value = "";
-				gain("upwd").value = "";
-				gain("upwd").focus();
+				gain("password").value = "";
+				gain("password2").value = "";
+				gain("password").focus();
 				return;
 			}
 			//填写了新密码
-			gain("pwdHidden").value = gainValue("userpassword");
+			gain("pwdHidden").value = gainValue("password");
 		}
 		//保存修改
 		gain("usermenus").value = getMenus();
 		//提交表单
 		
 		gain("formMain").submit();
+		console.log("over");
 	}
 }
 
@@ -289,6 +290,7 @@ function getuserxhr(){
 
 var userxhr;
 function checkUserName(rootPath, userName){
+    console.log("确认用户名有效--");
     userxhr = getuserxhr()
     var url = "permission/userManagerAction!checkDuplicateUserName.action?userName=" + escape(escape(userName)) + "&version=" + Math.random();
     if (userxhr == undefined) {
