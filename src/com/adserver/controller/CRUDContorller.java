@@ -68,9 +68,14 @@ public class CRUDContorller {
         List<List<Menu>> menus = new ArrayList<List<Menu>>();
         //所有父菜单
         List<Menu> parentMenu = menuDao.getAllParentMenu();
+        List<Menu> tmp = null;
         for (Menu menu : parentMenu) {
+            //先添加父菜单
+            tmp = new ArrayList<Menu>();
+            tmp.add(menu);
             List<Menu> subMenus = menuDao.getSubMenuByParentMenu(menu);
-            menus.add(subMenus);
+            tmp.addAll(subMenus);
+            menus.add(tmp);
         }
         request.setAttribute("menus", menus);
         return "login/userManager";

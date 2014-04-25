@@ -144,6 +144,7 @@ function modify(id, username, accountname, menus,password,userscope,projectId,us
  */
 var click = 0;
 function clickParentMenu(pid){
+    alert("点击父菜单： " + pid);
     var menus = document.getElementsByName("parent_"+pid);
     if (click == 0) {
         for (i = 0; i < menus.length; i++) {
