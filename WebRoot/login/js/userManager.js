@@ -2,6 +2,15 @@
  * 根据ID获取元素
  * @param {Object} id
  */
+
+
+function test() {
+    alert("hello");
+    var name = $("#mytest").attr("value");
+    alert(name);
+    
+}
+
 var gain = function(id){
     return document.getElementById(id);
 }
@@ -210,14 +219,53 @@ function del(id, rootPath){
  * 添加用户
  */
 function validateForm(rootPath){
+//    validateForm("adserver");
     if ("" == gainValue("name")) {
         alert("用户账号不能为空！");
         gain("name").focus();
         return;
     }
     // 添加用户 用户名称不能重复
+    alert(gainValue("userId"));
     if (gainValue("userId") == 0) {
-		checkUserName(rootPath, gainValue("name"));
+        //id为0说明是新添加的的用户 要进行用户是否可用判断
+//		checkUserName(rootPath, gainValue("name"));
+        alert(gainValue("name"));
+        var data = {name:gainValue("name")};
+        $.ajax({
+            url:"/adserver/user/namevalid",
+            type:"post",
+            data:data,
+            success:function(a){
+                 alert(a);
+                 if (a.result == "success") {
+                     //可用 执行添加用户请求 表彰提交
+                  /*  var form = document.forms[0];
+                    form.method = "post";
+                    form.action = "/adserver/user/adduser";
+                    form.submit();*/
+                     var json = $("#formMain").serialize();
+                     alert(json);
+                     $.ajax({
+                         url:"/adserver/user/adduser",
+                         type:"post",
+                         data:json,
+                         success:function(ret) {
+                             alert(ret);
+                             if (ret.result == "success") {
+                                 //添加成功
+                                 alert("添加用户成功");
+                                 //刷新页面
+                                 window.location.reload();
+                             }
+                         }
+                     });
+                 } else {
+                     //不可用
+                     alert(a.error);
+                 } 
+            }
+        });
 	}else {
 		if ("" == gainValue("password") && "" == gainValue("password2")) {
 		    console.log("abc");
@@ -291,9 +339,11 @@ function getuserxhr(){
 
 var userxhr;
 function checkUserName(rootPath, userName){
-    console.log("确认用户名有效--");
-    userxhr = getuserxhr()
-    var url = "permission/userManagerAction!checkDuplicateUserName.action?userName=" + escape(escape(userName)) + "&version=" + Math.random();
+    console.log("确认用户名有效--" + userName);
+   
+    
+/*    userxhr = getuserxhr()
+    var url = "rootPath//userManagerAction!checkDuplicateUserName.action?userName=" + escape(escape(userName)) + "&version=" + Math.random();
     if (userxhr == undefined) {
         alert("目前此操作只支持Trident(IE)、Gecko(FireFox)及WebKit(Chrome)内核的浏览器");
         return;
@@ -309,21 +359,21 @@ function checkUserName(rootPath, userName){
                 return;
             }
             else {
-                if ("" == gainValue("upwd")) {
+                if ("" == gainValue("password")) {
                     alert("密码不能为空！");
-                    gain("upwd").focus();
+                    gain("password").focus();
                     return;
                 }
-                if ("" == gainValue("userpassword")) {
+                if ("" == gainValue("password2")) {
                     alert("请再次输入密码！！");
-                    gain("userpassword").focus();
+                    gain("password2").focus();
                     return;
                 }
-                if (gainValue("upwd") != gainValue("userpassword")) {
+                if (gainValue("password") != gainValue("password2")) {
                     alert("两次密码输入不一致，请重新输入!");
-                    gain("userpassword").value = "";
-                    gain("upwd").value = "";
-                    gain("upwd").focus();
+                    gain("password").value = "";
+                    gain("password2").value = "";
+                    gain("password").focus();
                     return;
                     
                 }
@@ -336,7 +386,7 @@ function checkUserName(rootPath, userName){
     };
     userxhr.open("post", url, true);
     userxhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    userxhr.send();
+    userxhr.send();*/
 }
 function modifyCurrentUserPwd(rootPath,oldPwdValue,id){
 	if ("" == gainValue("oldPwd")) {

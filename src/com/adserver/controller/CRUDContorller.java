@@ -1,12 +1,19 @@
 package com.adserver.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletInputStream;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.jboss.logging.Param;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.adserver.dao.IMenuDao;
@@ -39,10 +46,10 @@ public class CRUDContorller {
         this.userService = userService;
     }
 
-    @RequestMapping("/addUser")
-    public String addUser(User user) {
+    @RequestMapping("/adduser")
+    public void addUser(User user, HttpServletResponse response) {
         System.out.println("进入 addUser-----" + user);
-        if (user == null || user.getName() == null) {
+       /* if (user == null || user.getName() == null) {
             return "failed";
         }
         //判断用户是否已经存在
@@ -52,8 +59,30 @@ public class CRUDContorller {
             return "failed";
         }
         System.out.println("user: " + user);
-        userService.addUser(user);
-        return "redirect:listall";
+        userService.addUser(user);*/
+//        return "redirect:listall";
+        PrintWriter writer = null;
+        try {
+            userService.addUser(user);
+            response.setContentType("application/json");
+            writer = response.getWriter();
+            User find = userService.getUser(user.getName());
+            String json = null;
+//            if (find != null) {
+//                json = "{\"result\":\"failed\",\"error\":\"用户名已经存在\"}";
+//                
+//            } else {
+                json = "{\"result\":\"success\",\"error\":\"\"}";
+                userService.addUser(user);
+//            }
+//            String json = "{\"result\":\"failed\",\"error\":\"用户名已经存在\"}";
+            writer.write(json);
+        } catch (Exception e) {
+        } finally {
+            if (writer != null) {
+                writer.close();
+            }
+        }
     }
     
     /**
@@ -79,6 +108,41 @@ public class CRUDContorller {
         }
         request.setAttribute("menus", menus);
         return "login/userManager";
+    }
+    
+    @RequestMapping("/namevalid")
+    public void isNameValid(User user, HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("进入 namevalide 方法---" + user);
+        try {
+           /* ServletInputStream is = request.getInputStream();
+            byte[] buf = new byte[request.getContentLength()];
+            System.out.println(request.getContentLength());
+            is.read(buf);
+            for (byte b : buf) {
+                System.out.println(b);
+            }
+            System.out.println(new String(buf, "utf-8"));*/
+            PrintWriter writer = response.getWriter();
+            //以json格式的数据返回
+            response.setContentType("application/json");
+            User find = userService.getUser(user.getName());
+            System.out.println("find: " + find);
+            String json = null;
+            if (find != null) {
+                json = "{\"result\":\"failed\",\"error\":\"用户名已经存在\"}";
+                
+            } else {
+                json = "{\"result\":\"success\",\"error\":\"\"}";
+            }
+//            String json = "{\"result\":\"success\",\"error\":\"\"}";
+//            String json = "{\"result\":\"failed\",\"error\":\"用户名已经存在\"}";
+            writer.write(json);
+//            is.close();
+            writer.close();
+        } catch (IOException e) {
+            System.out.println(e);
+            e.printStackTrace();
+        }
     }
 
 }

@@ -28,6 +28,21 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
     function addUser(param) {
         alert(param);
     }    
+    
+    function validName() {
+        var name = document.getElementById("name").value;
+        alert(name);
+        var data = {name:name};
+	    $.ajax({
+	            url:"/adserver/user/namevalid",
+	            type:"post",
+	            data:data,
+	            success:function(a){
+	                 alert(a);
+	            }
+	     });
+    }
+    
 </script>
 
 </head>
@@ -41,6 +56,8 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
          <form id="formMain" method="post"
          action="${pageContext.request.contextPath}/user/addUser"
 						 >
+                        <input type="text" value="aa" id="mytest" />
+						 <input type="button" onclick="test()" value="测试" />
 							<table width="100%" border="0" align="center" cellpadding="0"
 								cellspacing="0" style="margin-bottom: 5px;">
 								<tr>
@@ -200,7 +217,7 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 														<tr>
 															<td colspan="3" align="left"  style="padding-top: 5px;padding-bottom: 5px;padding-left: 160px;">
 																<input type="button""
-																	onclick="validateForm()"
+																	onclick="validateForm();"
 																	value=" 确认添加 " class="anniu02" id="sure"
 																	style="display: none"
 																	onmouseover="this.style.background='url(images/anniu02.png) no-repeat'"
