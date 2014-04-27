@@ -5,10 +5,21 @@
 
 
 function test() {
-    alert("hello");
-    var name = $("#mytest").attr("value");
-    alert(name);
-    
+    alert("测试");
+//    var name = $("#mytest").attr("value");
+//    alert(name);
+    var userTypeObj=document.getElementById("userType");
+    alert("userType初始值：  " + userTypeObj.value);
+    var types=document.getElementsByName("usertype");
+    alert("长度： " + types.length);
+    for (var i = 0; i < types.length; i++) {
+        alert(types[i].value);
+        alert("是否被选中： " + types[i].checked);
+        if (types[i].checked) {
+            userTypeObj.value = types[i].value;
+        }
+    }
+    alert("userType最后值：  " + userTypeObj.value);
 }
 
 var gain = function(id){
@@ -32,9 +43,10 @@ function viewControll(param){
         gain("sc").style.display = "none";
         gain("name").readOnly = false;
         gain("name").style.backgroundColor = "#ffffff";
-    }
-    else 
-        if ("ready" == param) {
+    } else if ("ready" == param) {
+            alert("准备添加");
+            gain("userId").value = 0;
+            gain("nickName").value = "";
             gain("cancle").style.display = "";
             gain("ready").style.display = "none";
             gain("sure").style.display = "";
@@ -225,6 +237,17 @@ function validateForm(rootPath){
         gain("name").focus();
         return;
     }
+    //两次密码要一致
+    if (gainValue("password") == "") {
+        alert("请输入密码");
+        gain("password").focus();
+        return ;
+    }
+    if (gainValue("password") != gainValue("password2")) {
+        alert("两次输入的密码不一致，请重新输入");
+        gain("password2").focus();
+        return ;
+    }
     // 添加用户 用户名称不能重复
     alert(gainValue("userId"));
     if (gainValue("userId") == 0) {
@@ -244,6 +267,22 @@ function validateForm(rootPath){
                     form.method = "post";
                     form.action = "/adserver/user/adduser";
                     form.submit();*/
+                     //菜单
+                     gain("menus").value = getMenus();
+                     alert("用户menus：" + getMenus());
+                     //用户类型
+                     var userTypeObj=document.getElementById("userType");
+//                     alert("userType初始值：  " + userTypeObj.value);
+                     var types=document.getElementsByName("usertype");
+//                     alert("长度： " + types.length);
+                     for (var i = 0; i < types.length; i++) {
+//                         alert(types[i].value);
+//                         alert("是否被选中： " + types[i].checked);
+                         if (types[i].checked) {
+                             userTypeObj.value = types[i].value;
+                         }
+                     }
+//                     alert("userType最后值：  " + userTypeObj.value);
                      var json = $("#formMain").serialize();
                      alert(json);
                      $.ajax({
@@ -266,7 +305,7 @@ function validateForm(rootPath){
                  } 
             }
         });
-	}else {
+	} else {
 		if ("" == gainValue("password") && "" == gainValue("password2")) {
 		    console.log("abc");
 //			gain("formMain").action ="manager/userManagerAction!saveOrUpdate.action" + "?pwd=" + gainValue("pwdHidden");
@@ -292,7 +331,7 @@ function validateForm(rootPath){
 			gain("pwdHidden").value = gainValue("password");
 		}
 		//保存修改
-		gain("usermenus").value = getMenus();
+		gain("menus").value = getMenus();
 		//提交表单
 		
 		gain("formMain").submit();
@@ -378,7 +417,7 @@ function checkUserName(rootPath, userName){
                     
                 }
                 //保存修改
-                gain("usermenus").value = getMenus();
+                gain("menus").value = getMenus();
                 //提交表单
                 gain("formMain").submit();
             }

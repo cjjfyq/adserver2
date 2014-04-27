@@ -19,7 +19,7 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scripts/md5.js\" language=\"JavaScript\" charset=\"utf-8\"></sc"+"ript>")*/
 </script>
 
-<script type="text/javascript" src="/adserver/login/js/jquery-1.4.2.js"></script>
+<script type="text/javascript" src="/adserver/js/jquery-1.4.2.js"></script>
 <script type="text/javascript" src="/adserver/login/js/userManager.js"></script>
 <script type="text/javascript" src="/adserver/login/js/md5.js"></script>
 
@@ -52,12 +52,12 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 <div class="right-hand"  align="left"> 
 
      <div class="r-contentz"> 
-     <!-- action="${pageContext.request.contextPath}/user/addUser" -->
+     <!-- action="${pageContext.request.contextPath}/user/adduser" -->
          <form id="formMain" method="post"
-         action="${pageContext.request.contextPath}/user/addUser"
 						 >
-                        <input type="text" value="aa" id="mytest" />
+                        <input type="text"" value="aa" id="mytest"  />
 						 <input type="button" onclick="test()" value="测试" />
+						 
 							<table width="100%" border="0" align="center" cellpadding="0"
 								cellspacing="0" style="margin-bottom: 5px;">
 								<tr>
@@ -158,15 +158,16 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 																align="left" width="12%">
 																用户类型：
 															</td>
-															  1:管理员, 2:客户, 3:商务人员, 4:广告平台客户, 5:酷果平台管理员（包括业务员）  
-															<td>
-																<label for="usertype1"><input id="usertype1" name="usertype"  type="radio" value="1"  checked="checked"/>&nbsp;&nbsp;管理员&nbsp;&nbsp;</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-																<label for="usertype2"><input id="usertype2" name="usertype"  type="radio" value="2" />&nbsp;&nbsp;客户&nbsp;&nbsp;</label>
-																<label for="usertype3"><input id="usertype3" name="usertype"  type="radio" value="3"  checked="checked"/>&nbsp;&nbsp;商务人员&nbsp;&nbsp;</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-																<label for="usertype4"><input id="usertype4" name="usertype"  type="radio" value="4" />&nbsp;&nbsp;广告平台客户&nbsp;&nbsp;</label>
-																<label for="usertype5"><input id="usertype5" name="usertype"  type="radio" value="5"  checked="checked"/>&nbsp;&nbsp;酷果平台管理员&nbsp;&nbsp;</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                 <input type="hidden" id="userType" name="userType" value="-1"/>
+                                                                 <!--  1:管理员, 2:客户, 3:商务人员, 4:广告平台客户, 5:酷果平台管理员（包括业务员）  -->
+                                                            <td>
+                                                                <label for="usertype1"><input id="usertype1" name="usertype"  type="radio" value="1"  checked="checked"/>&nbsp;&nbsp;管理员&nbsp;&nbsp;</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                <label for="usertype2"><input id="usertype2" name="usertype"  type="radio" value="2" />&nbsp;&nbsp;客户&nbsp;&nbsp;</label>
+                                                                <label for="usertype3"><input id="usertype3" name="usertype"  type="radio" value="3"  checked="checked"/>&nbsp;&nbsp;商务人员&nbsp;&nbsp;</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                <label for="usertype4"><input id="usertype4" name="usertype"  type="radio" value="4" />&nbsp;&nbsp;广告平台客户&nbsp;&nbsp;</label>
+                                                                <label for="usertype5"><input id="usertype5" name="usertype"  type="radio" value="5"  checked="checked"/>&nbsp;&nbsp;酷果平台管理员&nbsp;&nbsp;</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-															</td>
+                                                            </td>
 															
 														</tr>
 															<tr>
@@ -175,7 +176,7 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 																项目ID：
 															</td>
 															<td>
-																<input size=30 type="text" name="manager.projectIds" id="projectIds" width="88%"/><div style="color:gray;display:inline;padding-left:25px;font-size:14px;">如:100008;100034</div>
+																<input size=30 type="text" name="projectIds" id="projectIds" width="88%"/><div style="color:gray;display:inline;padding-left:25px;font-size:14px;">如:100008;100034</div>
 															</td>
 														</tr>
 														<tr>
@@ -239,7 +240,7 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 																	values="${user.password }" />
 
 																<input type="hidden" name="managerId" value="0" id="userId" />
-																<input type="hidden" name="manager.menus" id="usermenus" values="${manager.menus }"/>
+																<input type="hidden" name="menus" id="menus" values="${manager.menus }"/>
 
 															</td>
 														</tr>

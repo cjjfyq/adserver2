@@ -123,6 +123,7 @@ public class CRUDContorller {
             }
             System.out.println(new String(buf, "utf-8"));*/
             PrintWriter writer = response.getWriter();
+            
             //以json格式的数据返回
             response.setContentType("application/json");
             User find = userService.getUser(user.getName());
