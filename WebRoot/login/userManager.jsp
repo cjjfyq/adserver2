@@ -43,6 +43,11 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 	     });
     }
     
+    function deleUser(userId) {
+        alert("准备删除用户： " + userId);
+        
+    }
+    
 </script>
 
 </head>
@@ -329,6 +334,7 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 															<input type="button" value="删除" class="anniu"
 																onmouseover="this.style.background='url(images/anniu.png) no-repeat'"
 																onmouseout="this.style.background='url(images/anniu1.png) no-repeat'"
+																onclick="deleUser('${a.id}')"
 																/>
 
 														</td>
