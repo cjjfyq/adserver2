@@ -16,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import sun.print.resources.serviceui;
+
 import com.adserver.dao.IMenuDao;
 import com.adserver.service.IUserService;
 import com.adserver.web.entity.Menu;
@@ -138,6 +140,7 @@ public class CRUDContorller {
 //            String json = "{\"result\":\"success\",\"error\":\"\"}";
 //            String json = "{\"result\":\"failed\",\"error\":\"用户名已经存在\"}";
             writer.write(json);
+            writer.flush();
 //            is.close();
             writer.close();
         } catch (IOException e) {
@@ -162,6 +165,40 @@ public class CRUDContorller {
                 json = "{\"result\":\"failed\",\"error\":\"删除失败\"}";
             }
             writer.write(json);
+            writer.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (writer != null) {
+                writer.close();
+            }
+        }
+    }
+    
+    /**
+     * 
+     * @param user
+     * @param response
+     */
+    @RequestMapping("/updateuser")
+    public void updateUser(User user, HttpServletResponse response) {
+        System.out.println("更新用户---" + user);
+        if (user == null) {
+            return ;
+        }
+        PrintWriter writer = null;
+        try {
+            response.setContentType("application/json");
+            writer = response.getWriter();
+            boolean ret = userService.updateUser(user);
+            String json = null;
+            if (ret) {
+                json = "{\"result\":\"success\",\"error\":\"\"}";
+            } else {
+                json = "{\"result\":\"failed\",\"error\":\"删除失败\"}";
+            }
+            writer.write(json);
+            writer.flush();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

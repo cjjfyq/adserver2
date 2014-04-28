@@ -1,6 +1,12 @@
 package com.adserver.web.entity;
 
+import java.io.ByteArrayOutputStream;
+
+import org.codehaus.jackson.JsonGenerator;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.hibernate.annotations.GenericGenerator;
+
+import com.hp.hpl.sparta.xpath.ThisNodeTest;
 
 import javax.annotation.Generated;
 import javax.persistence.*;
@@ -112,10 +118,24 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", name=" + name + ", password=" + password
-                + ", menus=" + menus + ", nickName=" + nickName + ", userType="
-                + userType + ", userscope=" + userscope + ", projectIds="
-                + projectIds + "]";
+//        String s = "{'name':'" + name + "'}";
+//        String s = "name=" + name;
+//        System.out.println("tostring: " + s);
+        try {
+            ObjectMapper om = new ObjectMapper();
+            ByteArrayOutputStream os = new ByteArrayOutputStream();
+            JsonGenerator jg = om.getJsonFactory().createJsonGenerator(os);
+            jg.writeObject(this);
+            os.close();
+            String ret = new String(os.toByteArray(), "utf-8");
+            ret = ret.replaceAll("\"", "\\\\\"");
+            System.out.println(ret);
+            return ret;
+        } catch (Exception e) {
+        }
+        return "";
     }
+
+    
     
 }

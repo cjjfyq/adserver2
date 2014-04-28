@@ -62,7 +62,35 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 	            }
 	        });
         }
+        
     }
+    
+    function updateUser(user) {
+        alert("更新用户资料");
+        //var s = '{"name":"abc", "age":12}';
+        //alert(s);
+        //var u = eval('(' + s + ')');
+        //alert(u.name);
+        //alert(u.age);
+        alert(user);
+        var obj = eval('(' + user + ')');
+        alert("用户：" + obj.name);
+        $.ajax({
+            url:"/adserver/user/updateuser",
+            type:"post",
+            data:obj,
+            success:function(ret){
+                alert(ret);
+            }
+        });
+    }
+    
+    function myfunction(param) {
+            alert(param);
+            var user = eval("(" + param + ")");
+            alert(user.name);
+    }
+        
     
 </script>
 
@@ -77,7 +105,7 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
          <form id="formMain" method="post"
 						 >
                         <input type="text"" value="aa" id="mytest"  />
-						 <input type="button" onclick="test()" value="测试" />
+						 <input type="button" onclick='myfunction("{\"name\":\"abc\"}");' value="测试" />
 						 
 							<table width="100%" border="0" align="center" cellpadding="0"
 								cellspacing="0" style="margin-bottom: 5px;">
@@ -344,9 +372,9 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 														<input type="button" value="修改" class="anniu"
 															onmouseover="this.style.background='url(images/anniu.png) no-repeat'"
 															onmouseout="this.style.background='url(images/anniu1.png) no-repeat'"
-															onclick="modify('${a.id}','${a.name}','${a.nickName}','${a.menus }','${a.password}',${a.userscope },'${a.projectIds}',${a.userType })" 
+															 onclick='updateUser("${a}");'
 															/>
-
+                                                    <!--onclick="modify('${a.id}','${a.name}','${a.nickName}','${a.menus }','${a.password}',${a.userscope },'${a.projectIds}',${a.userType })"  -->
 															<input type="button" value="删除" class="anniu"
 																onmouseover="this.style.background='url(images/anniu.png) no-repeat'"
 																onmouseout="this.style.background='url(images/anniu1.png) no-repeat'"

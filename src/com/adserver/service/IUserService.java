@@ -25,7 +25,7 @@ public interface IUserService {
      * 更新用户
      * @param manager
      */
-    void updateUser(User manager);
+    boolean updateUser(User user);
 
     User getUser(String name);
     

@@ -43,8 +43,14 @@ public class UserDao extends AbstractBaseDao<User, Integer> implements IUserDao 
     }
 
     @Override
-    public void updateUser(User manager) {
-
+    public boolean updateUser(User user) {
+        System.out.println("更新用户id： " + user.getId());
+        String hql = "update User u set u.menus = ?,u.password=? where u.id = ?";
+        Query query = sessionFactory.getCurrentSession().createQuery(hql);
+        query.setString(0, user.getMenus());
+        query.setString(1, user.getPassword());
+        query.setInteger(2, user.getId());
+        return query.executeUpdate() > 0;
     }
 
     @Override
@@ -62,5 +68,7 @@ public class UserDao extends AbstractBaseDao<User, Integer> implements IUserDao 
         query.setInteger(0, id);
         return query.executeUpdate() > 0;
     }
+    
+    
     
 }

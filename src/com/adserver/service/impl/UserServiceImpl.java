@@ -31,8 +31,8 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void updateUser(User manager) {
-        userDao.updateUser(manager);
+    public boolean updateUser(User manager) {
+        return userDao.updateUser(manager);
     }
 
     @Override

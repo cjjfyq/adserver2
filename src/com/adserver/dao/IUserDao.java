@@ -25,10 +25,11 @@ public interface IUserDao {
      * 更新用户
      * @param manager
      */
-    void updateUser(User manager);
+    boolean updateUser(User user);
 
     User getUser(String name);
 
     boolean delUser(int id);
+    
 
 }
