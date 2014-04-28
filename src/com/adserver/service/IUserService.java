@@ -28,5 +28,7 @@ public interface IUserService {
     void updateUser(User manager);
 
     User getUser(String name);
+    
+    boolean delUser(int id);
 
 }

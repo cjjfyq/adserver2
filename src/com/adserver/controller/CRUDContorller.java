@@ -145,5 +145,30 @@ public class CRUDContorller {
             e.printStackTrace();
         }
     }
+    
+    @RequestMapping("/deluser")
+    public void deleUser(int userId, HttpServletResponse response) {
+        System.out.println("进入delUser方法----" + userId);
+        PrintWriter writer = null;
+        try {
+            response.setContentType("application/json");
+            writer = response.getWriter();
+            boolean ret = userService.delUser(userId);
+            System.out.println("删除结果： " + ret);
+            String json = null;
+            if (ret) {
+                json = "{\"result\":\"success\",\"error\":\"\"}";
+            } else {
+                json = "{\"result\":\"failed\",\"error\":\"删除失败\"}";
+            }
+            writer.write(json);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (writer != null) {
+                writer.close();
+            }
+        }
+    }
 
 }

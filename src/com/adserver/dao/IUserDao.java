@@ -29,5 +29,6 @@ public interface IUserDao {
 
     User getUser(String name);
 
+    boolean delUser(int id);
 
 }

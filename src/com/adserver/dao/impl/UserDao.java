@@ -54,4 +54,13 @@ public class UserDao extends AbstractBaseDao<User, Integer> implements IUserDao 
         query.setString(0, name);
         return (User) query.uniqueResult();
     }
+    
+    @Override
+    public boolean delUser(int id) {
+        String hql = "delete User u where u.id=?";
+        Query query = sessionFactory.getCurrentSession().createQuery(hql);
+        query.setInteger(0, id);
+        return query.executeUpdate() > 0;
+    }
+    
 }
