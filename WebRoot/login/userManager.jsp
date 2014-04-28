@@ -43,23 +43,25 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 	     });
     }
     
-    function deleUser(userId) {
+    function deleUser(userId, name) {
         alert("准备删除用户： " + userId);
-        var url = "/adserver/user/deluser?userId=" + userId;
-        alert(url);
-        $.ajax({
-            url:url,
-            type:"get",
-            success:function(ret) {
-                alert(ret);
-                if (ret.result == "success") {
-                   alert("删除成功");
-                   window.location.reload();    
-                } else {
-                   alert("删除失败");
-                }
-            }
-        });
+        if (confirm("确定删除用户: " + name)) {
+	        var url = "/adserver/user/deluser?userId=" + userId;
+	        alert(url);
+	        $.ajax({
+	            url:url,
+	            type:"get",
+	            success:function(ret) {
+	                alert(ret);
+	                if (ret.result == "success") {
+	                   alert("删除成功");
+	                   window.location.reload();    
+	                } else {
+	                   alert("删除失败");
+	                }
+	            }
+	        });
+        }
     }
     
 </script>
@@ -348,7 +350,7 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 															<input type="button" value="删除" class="anniu"
 																onmouseover="this.style.background='url(images/anniu.png) no-repeat'"
 																onmouseout="this.style.background='url(images/anniu1.png) no-repeat'"
-																onclick="deleUser('${a.id}')"
+																onclick="deleUser('${a.id}', '${a.name}')"
 																/>
 
 														</td>
