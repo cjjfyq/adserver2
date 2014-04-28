@@ -150,13 +150,13 @@ public class CRUDContorller {
     }
     
     @RequestMapping("/deluser")
-    public void deleUser(int userId, HttpServletResponse response) {
-        System.out.println("进入delUser方法----" + userId);
+    public void deleUser(int id, HttpServletResponse response) {
+        System.out.println("进入delUser方法----" + id);
         PrintWriter writer = null;
         try {
             response.setContentType("application/json");
             writer = response.getWriter();
-            boolean ret = userService.delUser(userId);
+            boolean ret = userService.delUser(id);
             System.out.println("删除结果： " + ret);
             String json = null;
             if (ret) {
@@ -183,7 +183,7 @@ public class CRUDContorller {
     @RequestMapping("/updateuser")
     public void updateUser(User user, HttpServletResponse response) {
         System.out.println("更新用户---" + user);
-        if (user == null) {
+        if (user == null || user.getId() <= 0) {
             return ;
         }
         PrintWriter writer = null;
@@ -191,6 +191,7 @@ public class CRUDContorller {
             response.setContentType("application/json");
             writer = response.getWriter();
             boolean ret = userService.updateUser(user);
+            System.out.println("更新用户结果： " + ret);
             String json = null;
             if (ret) {
                 json = "{\"result\":\"success\",\"error\":\"\"}";

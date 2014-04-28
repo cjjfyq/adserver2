@@ -10,6 +10,8 @@ import org.hibernate.SessionFactory;
 
 import java.util.List;
 
+import javax.transaction.UserTransaction;
+
 /**
  * Created by Gordon on 2014/4/15.
  */
@@ -45,11 +47,22 @@ public class UserDao extends AbstractBaseDao<User, Integer> implements IUserDao 
     @Override
     public boolean updateUser(User user) {
         System.out.println("更新用户id： " + user.getId());
-        String hql = "update User u set u.menus = ?,u.password=? where u.id = ?";
+        String hql;
+        boolean modifyPw = false;
+        if (user.getPassword() != null && !"".equals(user.getPassword())) {
+            modifyPw = true;
+            hql = "update User u set u.menus = ?,u.password=?,u.projectIds=? where u.id = ?";
+        } else {
+            hql = "update User u set u.menus = ?,u.projectIds=? where u.id = ?";
+        }
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
-        query.setString(0, user.getMenus());
-        query.setString(1, user.getPassword());
-        query.setInteger(2, user.getId());
+        int paramIndex = 0;
+        query.setString(paramIndex++, user.getMenus());
+        if (modifyPw) {
+            query.setString(paramIndex++, user.getPassword());
+        }
+        query.setString(paramIndex++, user.getProjectIds());
+        query.setInteger(paramIndex++, user.getId());
         return query.executeUpdate() > 0;
     }
 

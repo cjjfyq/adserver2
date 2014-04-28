@@ -43,10 +43,10 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 	     });
     }
     
-    function deleUser(userId, name) {
-        alert("准备删除用户： " + userId);
+    function deleUser(id, name) {
+        alert("准备删除用户： " + id);
         if (confirm("确定删除用户: " + name)) {
-	        var url = "/adserver/user/deluser?userId=" + userId;
+	        var url = "/adserver/user/deluser?id=" + id;
 	        alert(url);
 	        $.ajax({
 	            url:url,
@@ -65,8 +65,17 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
         
     }
     
-    function updateUser(user) {
-        alert("更新用户资料");
+    function tryupdate(user) {
+//        alert("更新用户资料");
+           gain("cancle").style.display = "";
+    gain("ready").style.display = "none";
+    gain("sure").style.display = "none";
+    gain("userTab").style.display = "";
+    gain("sc").style.display = "";
+    gain("password").focus();
+    gain("password2").select();
+    
+   
         //var s = '{"name":"abc", "age":12}';
         //alert(s);
         //var u = eval('(' + s + ')');
@@ -75,22 +84,101 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
         alert(user);
         var obj = eval('(' + user + ')');
         alert("用户：" + obj.name);
-        $.ajax({
+        //初始化 只能改密码跟菜单 
+        var objName = document.getElementById("name");
+        objName.readOnly = true;
+        objName.value = obj.name;
+        //id
+        var objId = document.getElementById("id");
+        objId.readOnly = true;
+        objId.value = obj.id;
+        var objNickName = document.getElementById("nickName");
+        objNickName.value = obj.nickName;
+        objNickName.readOnly = true;
+        //密码
+        var objPW = document.getElementById("password");
+        var objPW2 = document.getElementById("password2");
+        objPW2.value = "";
+        objPW.value = "";
+        
+        var objPro = document.getElementById("projectIds");
+        objPro.value = obj.projectIds;
+        
+        
+       // if(null!=gain("userscope"+userscope) && "undefined"!=gain("userscope"+userscope)){
+         //   gain("userscope"+userscope).checked=true;
+        //}
+    if(null!=gain("usertype"+obj.usertype) && "undefined"!=gain("usertype"+obj.usertype)){
+            gain("usertype"+obj.usertype).checked=true;
+    }
+    
+    if ("" != obj.menus) {
+        var ms = obj.menus.split(",");
+        var allMenu = document.body.getElementsByTagName("INPUT");
+        for (var i = 0; i < ms.length; i++) {
+            for (var j = 0; j < allMenu.length; j++) {
+                // alert(allMenu[i].type);
+                // 所有菜单权限
+                if (allMenu[j].type == "checkbox") {
+                    if (ms[i] == allMenu[j].value) {
+                        // 选中已有权限
+                        
+                        allMenu[j].checked = true;
+                    }
+                }
+            }
+            
+        }
+    }
+        
+    }
+    
+    function update() {
+        alert("更新用户");
+         gain("menus").value = getMenus();
+                     alert("用户menus：" + getMenus());
+                     //用户类型
+                     var userTypeObj=document.getElementById("userType");
+//                     alert("userType初始值：  " + userTypeObj.value);
+                     var types=document.getElementsByName("usertype");
+//                     alert("长度： " + types.length);
+                     for (var i = 0; i < types.length; i++) {
+//                         alert(types[i].value);
+//                         alert("是否被选中： " + types[i].checked);
+                         if (types[i].checked) {
+                             userTypeObj.value = types[i].value;
+                         }
+                     }
+//                     alert("userType最后值：  " + userTypeObj.value);
+        if (gainValue("password") != gainValue("password2")) {
+            alert("两次输入密码不一致，请重新输入");
+            gain("password").focus();
+            return ;
+        }
+                     var user = $("#formMain").serialize();
+         $.ajax({
             url:"/adserver/user/updateuser",
             type:"post",
-            data:obj,
+            data:user,
             success:function(ret){
                 alert(ret);
+                if (ret.result == "success") {
+                    alert("更改成功");
+                    window.location.reload();
+                } else {
+                    alert("更改失败");
+                }
             }
         });
     }
     
     function myfunction(param) {
-            alert(param);
-            var user = eval("(" + param + ")");
-            alert(user.name);
+             alert(param);
+          //var obj = eval("("+ param + ")");
+          //alert(obj.name);
+          var objId = document.getElementById("id");
+          alert("当前用户id：" + objId.value);
     }
-        
     
 </script>
 
@@ -105,7 +193,7 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
          <form id="formMain" method="post"
 						 >
                         <input type="text"" value="aa" id="mytest"  />
-						 <input type="button" onclick='myfunction("{\"name\":\"abc\"}");' value="测试" />
+						 <input type="button" onclick='myfunction("{\"name\":\"abc\"}")' value="测试" />
 						 
 							<table width="100%" border="0" align="center" cellpadding="0"
 								cellspacing="0" style="margin-bottom: 5px;">
@@ -274,7 +362,7 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 																	onmouseout="this.style.background='url(images/anniu12.png) no-repeat'" />
 																<input type="button" value=" 保存修改 " class="anniu02"
 																	id="sc" style="display: none"
-																	onclick="validateForm('${pageContext.request.contextPath}');"
+																	onclick="update();"
 																	onmouseover="this.style.background='url(images/anniu02.png) no-repeat'"
 																	onmouseout="this.style.background='url(images/anniu12.png) no-repeat'" />
 																&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -288,7 +376,7 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 																<input type="hidden" id="pwdHidden"
 																	values="${user.password }" />
 
-																<input type="hidden" name="managerId" value="0" id="userId" />
+																<input type="hidden" name="id" value="0" id="id" />
 																<input type="hidden" name="menus" id="menus" values="${manager.menus }"/>
 
 															</td>
@@ -372,7 +460,7 @@ document.write("<scr"+"ipt src=\"${pageContext.request.contextPath}/manager/scri
 														<input type="button" value="修改" class="anniu"
 															onmouseover="this.style.background='url(images/anniu.png) no-repeat'"
 															onmouseout="this.style.background='url(images/anniu1.png) no-repeat'"
-															 onclick='updateUser("${a}");'
+															 onclick='tryupdate("${a}");'
 															/>
                                                     <!--onclick="modify('${a.id}','${a.name}','${a.nickName}','${a.menus }','${a.password}',${a.userscope },'${a.projectIds}',${a.userType })"  -->
 															<input type="button" value="删除" class="anniu"

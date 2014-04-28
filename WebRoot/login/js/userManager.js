@@ -43,16 +43,17 @@ function viewControll(param){
         gain("sc").style.display = "none";
         gain("name").readOnly = false;
         gain("name").style.backgroundColor = "#ffffff";
+        gain("id").value = -1;
     } else if ("ready" == param) {
             alert("准备添加");
-            gain("userId").value = 0;
+            gain("id").value = 0;
             gain("nickName").value = "";
             gain("cancle").style.display = "";
             gain("ready").style.display = "none";
             gain("sure").style.display = "";
             gain("userTab").style.display = "";
-            gain("name").focus();
             gain("sc").style.display = "none";
+            gain("name").focus();
         }
 }
 
@@ -94,7 +95,7 @@ function getMenus(){
 function modify(id, username, accountname, menus,password,userscope,projectId,usertype){
 //    alert("modify");
 	clearChecked();
-    gain("userId").value = id;
+    gain("id").value = id;
     gain("name").value = username;
     gain("name").readOnly = true;
     gain("name").style.backgroundColor = "#ffff80";
@@ -249,8 +250,8 @@ function validateForm(rootPath){
         return ;
     }
     // 添加用户 用户名称不能重复
-    alert(gainValue("userId"));
-    if (gainValue("userId") == 0) {
+    alert(gainValue("id"));
+    if (gainValue("id") == 0) {
         //id为0说明是新添加的的用户 要进行用户是否可用判断
 //		checkUserName(rootPath, gainValue("name"));
         alert(gainValue("name"));
