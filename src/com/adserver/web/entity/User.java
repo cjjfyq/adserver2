@@ -6,6 +6,7 @@ import org.codehaus.jackson.JsonGenerator;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.hibernate.annotations.GenericGenerator;
 
+import com.google.gson.Gson;
 import com.hp.hpl.sparta.xpath.ThisNodeTest;
 
 import javax.annotation.Generated;
@@ -51,7 +52,6 @@ public class User {
     
     private String projectIds;
     
-
     public String getProjectIds() {
         return projectIds;
     }
@@ -118,16 +118,18 @@ public class User {
 
     @Override
     public String toString() {
-//        String s = "{'name':'" + name + "'}";
-//        String s = "name=" + name;
-//        System.out.println("tostring: " + s);
         try {
-            ObjectMapper om = new ObjectMapper();
+           /* ObjectMapper om = new ObjectMapper();
             ByteArrayOutputStream os = new ByteArrayOutputStream();
             JsonGenerator jg = om.getJsonFactory().createJsonGenerator(os);
             jg.writeObject(this);
             os.close();
             String ret = new String(os.toByteArray(), "utf-8");
+            ret = ret.replaceAll("\"", "\\\\\"");
+            System.out.println(ret);
+            return ret;*/
+            Gson gson = new Gson();
+            String ret = gson.toJson(this);
             ret = ret.replaceAll("\"", "\\\\\"");
             System.out.println(ret);
             return ret;
@@ -136,6 +138,5 @@ public class User {
         return "";
     }
 
-    
     
 }

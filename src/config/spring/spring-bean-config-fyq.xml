@@ -42,5 +42,19 @@
     <bean id="menuService" parent="transactionBase">
         <property name="target" ref="menuServiceBase"></property>
     </bean>
+    
+    
+    <bean id="devicePropertyDao" class="com.adserver.dao.impl.DevicePropertyDao">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    
+    <bean id="devicePropertyServiceBase" class="com.adserver.service.impl.DevicePropertyService">
+         <property name="devicePropertyDao" ref="devicePropertyDao"></property>
+    </bean>
+    
+    <bean id="devicePropertyService" parent="transactionBase">
+        <property name="target" ref="devicePropertyServiceBase"></property>
+    </bean>
+    
 
 </beans>

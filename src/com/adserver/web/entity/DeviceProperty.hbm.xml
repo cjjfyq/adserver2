@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.adserver.web.entity">
+ <class name="DeviceProperty" table="t_deviceproperty">
+  <id column="id" name="id" type="int">
+   <generator class="native" />
+  </id>
+  
+  <property name="imsi" type="string" length="32"></property>
+  <property name="imei" type="string" length="32"></property>
+   
+ </class>
+</hibernate-mapping>
